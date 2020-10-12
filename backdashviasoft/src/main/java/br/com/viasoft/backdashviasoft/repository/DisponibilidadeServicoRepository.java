@@ -1,5 +1,6 @@
 package br.com.viasoft.backdashviasoft.repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,6 @@ public interface DisponibilidadeServicoRepository extends JpaRepository<Disponib
 	
 	public DisponibilidadeServico findByAutorizador(String autorizador);
 	@Query("select d from disponibilidade_servico d where date(d.dataConsulta) = :data")
-	public List<DisponibilidadeServico> findByDataConsulta(@Param("data") Date data);
-
+	public List<DisponibilidadeServico> findByDataConsulta(@Param("data") LocalDate data);
+	
 }

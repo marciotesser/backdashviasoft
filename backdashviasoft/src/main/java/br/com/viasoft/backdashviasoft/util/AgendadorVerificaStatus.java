@@ -20,7 +20,7 @@ public class AgendadorVerificaStatus {
     @Autowired
     private DisponibilidadeServicoRepository servicoRepository;
     
-    @Scheduled(fixedDelay = MINUTO * 5)
+    @Scheduled(initialDelay = MINUTO * 1, fixedDelay = MINUTO * 5)
     public void verificaCincoMinutos() {
     	
     	List<DisponibilidadeServico> servicos = ConsultaStatusSite.retornaListaStatus();

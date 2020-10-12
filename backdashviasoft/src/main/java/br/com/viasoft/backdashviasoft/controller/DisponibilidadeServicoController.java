@@ -1,16 +1,13 @@
 package br.com.viasoft.backdashviasoft.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,12 +46,11 @@ public class DisponibilidadeServicoController {
 	}
 	
 	@GetMapping("/data/{data}")
-	public List<DisponibilidadeServico> buscarStatusPorData(@PathVariable("data") @DateTimeFormat(pattern = "yyyy-MM-dd") Date data ){
-		
-		List<DisponibilidadeServico> servicos = this.servicoRepository.findByDataConsulta(data);
+	public List<DisponibilidadeServico> buscarStatusPorData(@PathVariable("data") Date data ){
+		LocalDate localDate = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		List<DisponibilidadeServico> servicos = this.servicoRepository.findByDataConsulta(localDate);
 		
 		return servicos;
-	}
-	
+	}		
 
 }

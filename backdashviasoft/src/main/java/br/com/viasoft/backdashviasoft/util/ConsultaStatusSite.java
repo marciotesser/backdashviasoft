@@ -61,7 +61,13 @@ public class ConsultaStatusSite {
 	private static String retornaStatus(String img) {
 		String status = EnumStatus.NENHUM.getDescricao();
 		if (!img.isEmpty()) {
-			status = EnumStatus.valueOf(img.substring(8, 18).toUpperCase()).getDescricao();
+			if(img.toUpperCase().contains("BOLA_VERDE")) {
+				status = EnumStatus.BOLA_VERDE.getDescricao();
+			} else if(img.toUpperCase().contains("BOLA_AMARELA")) {
+				status = EnumStatus.BOLA_AMARELA.getDescricao();
+			} else {
+				status = EnumStatus.BOLA_VERMELHA.getDescricao();
+			}
 		}
 
 		return status;
